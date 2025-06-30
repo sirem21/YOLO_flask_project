@@ -25,6 +25,7 @@ class UploadFileForm(FlaskForm):
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+#root page accepts both get and post requests
 @app.route("/", methods=["GET", "POST"])
 def home():
     #check if form is submitted via post request and pass file validation
