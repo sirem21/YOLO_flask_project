@@ -53,6 +53,21 @@ def home():
             return render_template('results.html', fruits=nutritionVal, result_image=result_image_name)
     return render_template('index.html', form=form)
 
+@app.errorhandler(413)
+def too_large(e):  # noqa: D401
+    flash("File is too large. Maximum size is 10MB.", "danger")
+    return render_template("index.html", form=UploadFileForm()), 413
+
+
+@app.errorhandler(404)
+def not_found(e):  # noqa: D401
+    return render_template("404.html"), 404
+
+
+@app.errorhandler(500)
+def internal_error(e):  # noqa: D401
+    # Generic 500 handler; detailed errors are already logged.
+    return render_template("500.html"), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
