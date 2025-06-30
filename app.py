@@ -13,6 +13,7 @@ app =Flask(__name__)
 
 # supersecretkey2025 SHA-256 UTF 8
 app.config['SECRET_KEY'] = '32b0d906e31813a7693f748e8426727c2395ca77484d283f41b1d4d0eb2a8614'
+
 #file uploads configuration
 app.config['UPLOAD_FOLDER'] = r'D:\PythonProject YOLO\static\uploads'
 app.config['RESULT_FOLDER'] = r'D:\PythonProject YOLO\static\results'
