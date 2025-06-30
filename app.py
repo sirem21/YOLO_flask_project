@@ -18,6 +18,7 @@ app.config['UPLOAD_FOLDER'] = r'D:\PythonProject YOLO\static\uploads'
 app.config['RESULT_FOLDER'] = r'D:\PythonProject YOLO\static\results'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
+#uploading files in more secure way with FlaskForm class
 class UploadFileForm(FlaskForm):
     file = FileField("File",validators=[InputRequired()])
     submit = SubmitField("Upload File")
