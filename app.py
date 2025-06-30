@@ -38,7 +38,6 @@ def home():
         #check and save uploaded file in uploaded folder
         os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
         filename = secure_filename(file.filename)
-        print(f"Secure file name: {filename}")
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
 
