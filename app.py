@@ -16,6 +16,7 @@ app.config['SECRET_KEY'] = '32b0d906e31813a7693f748e8426727c2395ca77484d283f41b1
 #file uploads configuration
 app.config['UPLOAD_FOLDER'] = r'D:\PythonProject YOLO\static\uploads'
 app.config['RESULT_FOLDER'] = r'D:\PythonProject YOLO\static\results'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 class UploadFileForm(FlaskForm):
     file = FileField("File",validators=[InputRequired()])
