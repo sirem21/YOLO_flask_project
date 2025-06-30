@@ -1,0 +1,12 @@
+path: D:\PythonProject YOLO\dataset
+train: images/train
+val: images/val
+nc: 5
+names: ['apple', 'orange', 'pineapple', 'strawberry', 'watermelon']
+
+roboflow:
+  workspace: irs-zmi0l
+  project: meyve-sebze-mrbyv-qtmhe
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/irs-zmi0l/meyve-sebze-mrbyv-qtmhe/dataset/1

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruits – Your Fruits Counter</title>
+
+    <!-- Google Fonts (Playfair Display for headlines, Poppins for body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --bg-cream: #faf9f7;
+            --accent: #c7bfae;
+            --text-dark: #222;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: "Poppins", sans-serif;
+            background: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 1rem;
+        }
+
+        /* =====  SIMPLE LAYOUT  ===== */
+        .card {
+            position: relative;
+            max-width: 1100px;
+            width: 100%;
+            background: #fff;
+            padding: 3rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem 4rem;
+            overflow: hidden;
+        }
+
+        /* diagonal corner accent */
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-top: 150px solid var(--accent);
+            border-right: 150px solid transparent;
+        }
+
+        /* watermark in the back */
+        .card::after {
+            content: "Ca";
+            position: absolute;
+            bottom: -10%;
+            left: -5%;
+            font-size: 30rem;
+            font-family: "Playfair Display", serif;
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0.15;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* =====  TYPOGRAPHY  ===== */
+        .brand {
+            font-family: "Playfair Display", serif;
+            font-weight: 700;
+            font-size: 2rem;
+            letter-spacing: 0.03em;
+        }
+        .brand small {
+            display: block;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.25rem;
+            opacity: 0.55;
+        }
+
+        h1 {
+            font-family: "Playfair Display", serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0.5rem 0 1rem;
+        }
+
+        h1 span {
+            display: block;
+            font-size: 1.75rem;
+            color: var(--accent);
+            font-weight: 400;
+            letter-spacing: 0.04em;
+        }
+
+        p {
+            max-width: 30ch;
+            margin-bottom: 2rem;
+        }
+
+        /* =====  IMAGE GRID  ===== */
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-auto-rows: minmax(160px, auto);
+            gap: 1rem;
+        }
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.4rem;
+        }
+        .gallery img:nth-child(1) {
+            grid-column: 1 / -1;   /* big image spans both columns */
+            aspect-ratio: 4/3;
+        }
+
+        /* =====  UPLOAD BUTTON  ===== */
+        .upload-wrapper {
+            margin-top: 1rem;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .custom-btn {
+            display: inline-block;
+            padding: 0.6rem 1.4rem;
+            border-radius: 0.3rem;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .custom-btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="card">
+        <div>
+
+            <h1>Fruit's Nutrient Values</h1>
+
+            <p>
+                Fruits are nature’s powerhouse of essential nutrients. They are rich in vitamins like vitamin C (found in oranges and strawberries), which boosts immunity, and vitamin A (found in watermelon), which supports vision and skin health.
+                Including a variety of fruits in your diet ensures you get a wide range of nutrients to support overall health and well-being.
+            </p>
+
+            <!-- Upload button -->
+            <!--<div class="upload-wrapper">-->
+                <form method="POST" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    {{ form.file(id="fileInput")}}
+                    <label for="fileInput" class="custom-btn">Choose Image</label>
+
+                    {{form.submit(class="custom-btn")}}
+
+                </form>
+            <!--</div>-->
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="gallery" id="gallery"></div>
+    </section>
+
+    <script>
+    const fileInput = document.getElementById("fileInput");
+const gallery = document.getElementById("gallery");
+
+fileInput.addEventListener("change", (e) => {
+    const files = Array.from(e.target.files);
+    gallery.innerHTML = "";  // clear previous images
+
+    if (files.length === 0) {
+        gallery.style.display = "none";
+        return;
+    }
+
+    gallery.style.display = "grid";  // show the preview grid
+
+    files.forEach((file) => {
+        if (!file.type.startsWith("image/")) return;
+
+        const img = document.createElement("img");
+        img.src = URL.createObjectURL(file);
+        img.alt = file.name;
+        img.style.gridColumn = "1 / -1";
+        img.style.aspectRatio = "4 / 3";
+        gallery.appendChild(img);
+    });
+});
+    </script>
+</body>
+</html>
