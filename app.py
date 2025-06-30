@@ -45,7 +45,7 @@ def home():
 
         nutritionVal = main(filepath)
 
-        # latest YOLO folder
+        #find most recent YOLO files in predict directory
         predict_folders = glob.glob("runs/detect/predict*")
         if not predict_folders:
             flash("No prediction output found"); return redirect(request.url)
