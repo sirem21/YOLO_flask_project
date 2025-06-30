@@ -69,7 +69,7 @@ def home():
 
 #if file size is too large
 @app.errorhandler(413)
-def too_large(e):  # noqa: D401
+def too_large(e):
     flash("File is too large. Maximum size is 10MB.", "danger")
     return render_template("index.html", form=UploadFileForm()), 413
 
