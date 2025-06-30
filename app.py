@@ -70,7 +70,7 @@ def too_large(e):  # noqa: D401
     flash("File is too large. Maximum size is 10MB.", "danger")
     return render_template("index.html", form=UploadFileForm()), 413
 
-
+#if page is not found
 @app.errorhandler(404)
 def not_found(e):  # noqa: D401
     return render_template("404.html"), 404
