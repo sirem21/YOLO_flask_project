@@ -35,6 +35,7 @@ def home():
             flash("Unsupported file type")
             return redirect(request.url)
 
+        #check and save uploaded file in uploaded folder
         os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
         filename = secure_filename(file.filename)
         print(f"Secure file name: {filename}")
