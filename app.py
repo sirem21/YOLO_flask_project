@@ -31,7 +31,7 @@ def home():
     form = UploadFileForm()
     if form.validate_on_submit():
         file = form.file.data
-
+        #check type of file
         if not allowed_file(file.filename):
             flash("Unsupported file type")
             return redirect(request.url)
