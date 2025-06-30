@@ -51,12 +51,11 @@ def home():
             flash("No prediction output found"); return redirect(request.url)
         latest_folder = max(predict_folders, key=os.path.getctime)
 
-        #grabs the first image from latest predit directory
-        result_images = glob.glob(os.path.join(latest_folder, '*.jpg'))
-        result_image_path = result_images[0] if result_images else None
-
-        #copy labeled images to static/results
-        if result_image_path:
+        #copy latest folder in results folder
+        result_images = glob.glob(os.path.join(latest_folder, "*.jpg"))
+        result_image_name = None
+        if result_images:
+            result_image_path = result_images[0]
             result_image_name = os.path.basename(result_image_path)
             final_result_path = os.path.join('static/results', result_image_name)
             shutil.copy(result_image_path, final_result_path)
