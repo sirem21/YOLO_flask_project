@@ -27,6 +27,7 @@ def allowed_file(filename):
 
 @app.route("/", methods=["GET", "POST"])
 def home():
+    #check if form is submitted via post request and pass file validation
     form = UploadFileForm()
     if form.validate_on_submit():
         file = form.file.data
