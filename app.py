@@ -57,9 +57,12 @@ def home():
         if result_images:
             result_image_path = result_images[0]
             result_image_name = os.path.basename(result_image_path)
-            final_result_path = os.path.join('static/results', result_image_name)
-            shutil.copy(result_image_path, final_result_path)
-        with open('nutritionVal.json', 'w', encoding='utf-8') as f:
+            os.makedirs("static/results", exist_ok=True)
+            shutil.copy(result_image_path,
+                        os.path.join("static/results", result_image_name))
+
+        #save nutrition value info as json file
+        with open("nutritionVal.json", "w", encoding="utf-8") as f:
             json.dump(list(nutritionVal), f, ensure_ascii=False, indent=4)
 
         return render_template("results.html",
