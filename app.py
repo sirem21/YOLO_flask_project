@@ -65,6 +65,9 @@ def home():
             return render_template('results.html', fruits=nutritionVal, result_image=result_image_name)
     return render_template('index.html', form=form)
 
+    return render_template("index.html", form=form)
+
+#if file size is too large
 @app.errorhandler(413)
 def too_large(e):  # noqa: D401
     flash("File is too large. Maximum size is 10MB.", "danger")
