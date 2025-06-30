@@ -41,7 +41,6 @@ def home():
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         print("FINAL path:", filepath)
         file.save(filepath)
-        print("File has been uploaded!")
 
         #runs YOLO and get appropriate nutrition values
         nutritionVal = main(filepath)
