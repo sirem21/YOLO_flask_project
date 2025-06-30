@@ -75,7 +75,7 @@ def too_large(e):  # noqa: D401
 def not_found(e):  # noqa: D401
     return render_template("404.html"), 404
 
-
+#intenrnal server error
 @app.errorhandler(500)
 def internal_error(e):  # noqa: D401
     # Generic 500 handler; detailed errors are already logged.
