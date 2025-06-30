@@ -45,8 +45,10 @@ def home():
 
         nutritionVal = main(filepath)
 
-        #find the 'runs/detect/predict*'
-        predict_folders = glob.glob('runs/detect/predict*')
+        # latest YOLO folder
+        predict_folders = glob.glob("runs/detect/predict*")
+        if not predict_folders:
+            flash("No prediction output found"); return redirect(request.url)
         latest_folder = max(predict_folders, key=os.path.getctime)
 
         #grabs the first image from latest predit directory
