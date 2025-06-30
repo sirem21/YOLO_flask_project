@@ -30,6 +30,12 @@ def home():
     form = UploadFileForm()
     if form.validate_on_submit():
         file = form.file.data
+
+        if not allowed_file(file.filename):
+            flash("Unsupported file type")
+            return redirect(request.url)
+
+        os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
         filename = secure_filename(file.filename)
         print(f"Secure file name: {filename}")
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
