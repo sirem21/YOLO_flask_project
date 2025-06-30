@@ -22,6 +22,7 @@ class UploadFileForm(FlaskForm):
     file = FileField("File",validators=[InputRequired()])
     submit = SubmitField("Upload File")
 
+#check file extensions
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
