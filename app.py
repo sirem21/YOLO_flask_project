@@ -22,7 +22,10 @@ class UploadFileForm(FlaskForm):
     file = FileField("File",validators=[InputRequired()])
     submit = SubmitField("Upload File")
 
-@app.route('/',methods=['GET','POST'])
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route("/", methods=["GET", "POST"])
 def home():
     form = UploadFileForm()
     if form.validate_on_submit():
