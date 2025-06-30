@@ -62,8 +62,10 @@ def home():
             shutil.copy(result_image_path, final_result_path)
         with open('nutritionVal.json', 'w', encoding='utf-8') as f:
             json.dump(list(nutritionVal), f, ensure_ascii=False, indent=4)
-            return render_template('results.html', fruits=nutritionVal, result_image=result_image_name)
-    return render_template('index.html', form=form)
+
+        return render_template("results.html",
+                               fruits=nutritionVal,
+                               result_image=result_image_name)
 
     return render_template("index.html", form=form)
 
