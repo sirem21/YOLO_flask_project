@@ -39,7 +39,6 @@ def home():
         filename = secure_filename(file.filename)
         print(f"Secure file name: {filename}")
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        print("FINAL path:", filepath)
         file.save(filepath)
 
         #runs YOLO and get appropriate nutrition values
